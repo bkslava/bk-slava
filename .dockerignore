@@ -1,0 +1,10 @@
+.git
+**/node_modules
+app/dist
+app/.tanstack
+app/.wrangler
+refs
+media-jobs
+tools
+*.log
+.env*
