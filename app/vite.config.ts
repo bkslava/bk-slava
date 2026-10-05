@@ -26,6 +26,14 @@ export default defineConfig(({ mode, command }) => {
   return {
     // "/" for local/Railway/Workers; "/bk-slava/" for GitHub Pages (see export-static.mjs).
     base: process.env.VITE_BASE || "/",
+    server: {
+      proxy: {
+        "^/api/consultation(?:\\?|$)": {
+          target: process.env.CONSULTATION_PROXY_TARGET || "http://127.0.0.1:8787",
+          changeOrigin: false,
+        },
+      },
+    },
     resolve: {
       alias: [{ find: /^@higgsfield-ai\/icons(\/.*)?$/, replacement: QUANTA_ICONS_SHIM }],
     },

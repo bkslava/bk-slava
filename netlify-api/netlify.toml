@@ -1,0 +1,14 @@
+# Separate Netlify site: serves ONLY the Telegram consultation API (no website files).
+[build]
+  publish = "public"
+  functions = "functions"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = []
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Cache-Control = "no-store"

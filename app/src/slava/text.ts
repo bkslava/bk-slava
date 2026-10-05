@@ -38,11 +38,9 @@ export const uk = {
     close: "Закрити форму",
     topline: "БК СЛАВА / КОНСУЛЬТАЦІЯ",
     title: ["Ваш простір.", "Наш наступний крок."],
-    description: "Розкажіть про об’єкт. Підготуємо звернення, щоб вам було зручно обговорити деталі.",
-    doneTitle: "Звернення підготовлено",
-    storedYes:
-      "Дані збережено лише у цьому браузері на час сесії. Автоматичне надсилання ще не підключене.",
-    storedNo: "Дані доступні лише у відкритій формі. Автоматичне надсилання ще не підключене.",
+    description: "Розкажіть про об’єкт. Надішліть заявку, щоб ми могли обговорити деталі.",
+    doneTitle: "Заявку прийнято",
+    doneDescription: "Дякуємо! Вашу заявку надіслано команді БК Слава. Ми зв’яжемося з вами за вказаним телефоном.",
     sendMail: "Надіслати через пошту",
     back: "Повернутися до форми",
     name: "Ваше ім’я *",
@@ -57,7 +55,11 @@ export const uk = {
     messagePlaceholder: "Тип приміщення, стан і бажаний результат",
     consent: "Погоджуюсь на обробку даних згідно з",
     privacyLink: "політикою приватності",
-    submit: "Підготувати звернення",
+    submit: "Надіслати заявку",
+    sending: "Надсилаємо…",
+    errSend: "Не вдалося надіслати заявку. Ваші дані залишилися у формі. Спробуйте ще раз або зателефонуйте нам.",
+    errUnconfirmed: "Не вдалося підтвердити доставку заявки. Ваші дані залишилися у формі. Повторіть спробу або зателефонуйте нам.",
+    errRateLimit: "Забагато спроб. Спробуйте через кілька хвилин або зателефонуйте нам.",
     direct: "Або зв’яжіться напряму:",
     errName: "Вкажіть, будь ласка, ваше ім’я.",
     errPhone: "Вкажіть український номер: +380 та 9 цифр або 0 та 9 цифр.",
@@ -215,7 +217,7 @@ export const uk = {
     sections: [
       [
         "Форма консультації",
-        "У цій версії сайту форма готує звернення та зберігає його лише у sessionStorage вашого браузера на час поточної сесії. Дані автоматично не надсилаються компанії. Ви можете самостійно відправити підготовлений текст через свій поштовий застосунок.",
+        "Після вашої згоди та натискання кнопки надсилання дані форми передаються команді БК Слава через Telegram для відповіді на ваше звернення. Повідомлення про прийняття заявки з’являється після підтвердження доставки. Форма не зберігає контактні дані у сховищі браузера.",
       ],
       [
         "Контактні дані",
@@ -223,7 +225,7 @@ export const uk = {
       ],
       [
         "Зовнішні сервіси",
-        "Посилання на WhatsApp, Viber і пошту відкривають відповідні сторонні сервіси. Подальша обробка інформації відбувається згідно з їхніми політиками.",
+        "Для доставки заявки використовується Telegram. Посилання на Telegram, WhatsApp, Viber і пошту відкривають відповідні сторонні сервіси. Обробка інформації цими сервісами відбувається згідно з їхніми політиками.",
       ],
       [
         "Локальне зберігання",
@@ -288,7 +290,7 @@ export const en: UI = {
     description: "Construction and renovation in Kyiv and Kyiv Region since 2006.",
   },
   footer: {
-    tagline: ["Thoughtful solutions.", "Professional workmanship.", "Kyiv and Kyiv Region."],
+    tagline: ["Thoughtful solutions.", "Professional workmanship across Kyiv and the Kyiv region."],
     since: "Since 2006",
   },
   form: {
@@ -296,12 +298,9 @@ export const en: UI = {
     topline: "BK SLAVA / CONSULTATION",
     title: ["Tell us about", "your project."],
     description:
-      "Tell us about your property and the work you need. We’ll prepare a summary you can send by email.",
-    doneTitle: "Your enquiry is ready",
-    storedYes:
-      "Your details are saved in this browser for the current session. The form does not send them automatically.",
-    storedNo:
-      "Your details are still in this form. The form does not send them automatically.",
+      "Tell us about your property and the work you need. Send an enquiry so we can discuss the details.",
+    doneTitle: "Your enquiry has been received",
+    doneDescription: "Thank you! Your enquiry has been sent to the BK Slava team. We will contact you at the phone number you provided.",
     sendMail: "Send by email",
     back: "Back to the form",
     name: "Your name *",
@@ -316,7 +315,11 @@ export const en: UI = {
     messagePlaceholder: "Type of property, current condition and desired result",
     consent: "I agree to the processing of my contact details as described in the",
     privacyLink: "privacy policy",
-    submit: "Prepare enquiry",
+    submit: "Send enquiry",
+    sending: "Sending…",
+    errSend: "We could not send your enquiry. Your details are still in the form. Please try again or call us.",
+    errUnconfirmed: "We could not confirm delivery of your enquiry. Your details are still in the form. Please try again or call us.",
+    errRateLimit: "Too many attempts. Please try again in a few minutes or call us.",
     direct: "Or contact us directly:",
     errName: "Please enter your name.",
     errPhone: "Enter a Ukrainian phone number: +380 and 9 digits, or 0 and 9 digits.",
@@ -469,7 +472,7 @@ export const en: UI = {
     sections: [
       [
         "Consultation form",
-        "The consultation form prepares an enquiry and stores it in your browser’s sessionStorage for the current session. It does not send your details to the company automatically. You can send the prepared message through your email app.",
+        "After you give consent and press the send button, the form details are sent to the BK Slava team through Telegram so we can respond to your enquiry. Confirmation appears after delivery is acknowledged. The form does not save contact details in browser storage.",
       ],
       [
         "Contact details",
@@ -477,7 +480,7 @@ export const en: UI = {
       ],
       [
         "External services",
-        "The WhatsApp, Viber and email links open those services. Their own policies govern how they process information you share there.",
+        "Telegram is used to deliver enquiries. The Telegram, WhatsApp, Viber and email links open those services. Their own policies govern how they process information you share there.",
       ],
       [
         "Local storage",

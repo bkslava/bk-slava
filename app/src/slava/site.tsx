@@ -246,7 +246,7 @@ function Consultation({
   service: string;
   returnFocus: () => void;
 }) {
-  const { tx, href, data } = useI18n();
+  const { tx, href, data, lang } = useI18n();
   const f = tx.form;
   const [values, setValues] = useState({
     name: "",
@@ -260,7 +260,9 @@ function Consultation({
   const [invalidField, setInvalidField] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const [saved, setSaved] = useState(false);
-  const [stored, setStored] = useState(false);
+  const [sending, setSending] = useState(false);
+  const sendingRef = useRef(false);
+  const requestRef = useRef<{ payload: string; id: string } | null>(null);
   useEffect(() => {
     if (open) {
       setValues((v) => ({ ...v, service }));
@@ -269,8 +271,9 @@ function Consultation({
       setInvalidField("");
     }
   }, [open, service]);
-  function submit(e: FormEvent) {
+  async function submit(e: FormEvent) {
     e.preventDefault();
+    if (sendingRef.current) return;
     const digits = values.phone.replace(/\D/g, "");
     const reject = (field: string, message: string) => {
       setInvalidField(field);
@@ -289,19 +292,36 @@ function Consultation({
       reject("consent", f.errConsent);
       return;
     }
-    try {
-      sessionStorage.setItem("slava-consultation", JSON.stringify(values));
-      setStored(true);
-    } catch {
-      setStored(false);
-    }
     setError("");
     setInvalidField("");
-    setSaved(true);
+    sendingRef.current = true;
+    setSending(true);
+    try {
+      const payload = JSON.stringify({ ...values, lang });
+      if (requestRef.current?.payload !== payload) {
+        requestRef.current = { payload, id: crypto.randomUUID() };
+      }
+      const response = await fetch(import.meta.env.VITE_CONSULTATION_API_URL || "/api/consultation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...values, lang, requestId: requestRef.current.id }),
+        signal: AbortSignal.timeout(18000),
+      });
+      const result = await response.json();
+      if (!response.ok || result.ok !== true) {
+        setError(result.error === "DELIVERY_UNCONFIRMED" ? f.errUnconfirmed : response.status === 429 ? f.errRateLimit : f.errSend);
+        return;
+      }
+      setSaved(true);
+    } catch {
+      setError(f.errUnconfirmed);
+    } finally {
+      sendingRef.current = false;
+      setSending(false);
+    }
   }
-  const emailBody = `${f.mailSubject}\n${f.mailName}: ${values.name}\n${f.mailPhone}: ${values.phone}\n${f.mailPlace}: ${values.place}\n${f.mailService}: ${values.service}\n${values.message}`;
   return (
-    <Dialog.Root open={open} onOpenChange={onOpenChange}>
+    <Dialog.Root open={open} onOpenChange={(next) => { if (!sendingRef.current) onOpenChange(next); }}>
       <Dialog.Portal>
         <Dialog.Overlay className="dialog-overlay" />
         <Dialog.Content
@@ -311,7 +331,7 @@ function Consultation({
             returnFocus();
           }}
         >
-          <Dialog.Close className="close-control" aria-label={f.close}>
+          <Dialog.Close className="close-control" aria-label={f.close} disabled={sending}>
             <Close />
           </Dialog.Close>
           <div className="panel-topline">{f.topline}</div>
@@ -323,27 +343,20 @@ function Consultation({
             <div className="form-complete" role="status">
               <span className="complete-mark">✓</span>
               <h3>{f.doneTitle}</h3>
-              <p>{stored ? f.storedYes : f.storedNo}</p>
-              <a
-                className="email-draft"
-                href={
-                  "mailto:m98720141@gmail.com?subject=" +
-                  encodeURIComponent(f.mailSubject) +
-                  "&body=" +
-                  encodeURIComponent(emailBody)
-                }
-              >
-                {f.sendMail} <Arrow diagonal />
-              </a>
+              <p>{f.doneDescription}</p>
               <a href="tel:+380676090075" className="notice-phone">
                 {phone}
               </a>
-              <button className="text-link" onClick={() => setSaved(false)}>
+              <button className="text-link" onClick={() => {
+                setValues({ name: "", phone: "", place: "", service, message: "", consent: false });
+                requestRef.current = null;
+                setSaved(false);
+              }}>
                 {f.back}
               </button>
             </div>
           ) : (
-            <form ref={formRef} onSubmit={submit} noValidate>
+            <form ref={formRef} onSubmit={submit} noValidate aria-busy={sending}>
               <div className="form-grid">
                 <label>
                   {f.name}
@@ -357,6 +370,7 @@ function Consultation({
                     placeholder={f.namePlaceholder}
                     required
                     maxLength={80}
+                    disabled={sending}
                   />
                 </label>
                 <label>
@@ -373,6 +387,7 @@ function Consultation({
                     placeholder={f.phonePlaceholder}
                     required
                     maxLength={25}
+                    disabled={sending}
                   />
                 </label>
               </div>
@@ -385,6 +400,7 @@ function Consultation({
                   onChange={(e) => setValues({ ...values, place: e.target.value })}
                   placeholder={f.placePlaceholder}
                   maxLength={120}
+                  disabled={sending}
                 />
               </label>
               <label>
@@ -392,6 +408,7 @@ function Consultation({
                 <select
                   name="service"
                   value={values.service}
+                  disabled={sending}
                   onChange={(e) => setValues({ ...values, service: e.target.value })}
                 >
                   <option value="">{f.choose}</option>
@@ -409,6 +426,7 @@ function Consultation({
                   placeholder={f.messagePlaceholder}
                   rows={3}
                   maxLength={2000}
+                  disabled={sending}
                 />
               </label>
               <label className="consent">
@@ -419,6 +437,7 @@ function Consultation({
                   aria-invalid={invalidField === "consent"}
                   aria-describedby={invalidField === "consent" ? "consultation-error" : undefined}
                   checked={values.consent}
+                  disabled={sending}
                   onChange={(e) => setValues({ ...values, consent: e.target.checked })}
                 />
                 <span>
@@ -434,8 +453,8 @@ function Consultation({
                   {error}
                 </p>
               )}
-              <button type="submit" className="form-submit">
-                {f.submit} <Arrow diagonal />
+              <button type="submit" className="form-submit" disabled={sending}>
+                {sending ? f.sending : f.submit} <Arrow diagonal />
               </button>
               <p className="form-note">
                 {f.direct} <a href="tel:+380676090075">{phone}</a>

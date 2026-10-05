@@ -1,0 +1,16 @@
+# Production static site (bk-slava). Build locally:
+#   VITE_SITE_ORIGIN=https://slavabud.com.ua VITE_CONSULTATION_API_URL=https://api.slavabud.com.ua/api/consultation bun run build && node export-static.mjs
+# Deploy: netlify deploy --prod --dir dist-pages
+[build]
+  publish = "dist-pages"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

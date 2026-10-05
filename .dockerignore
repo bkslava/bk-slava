@@ -8,3 +8,6 @@ media-jobs
 tools
 *.log
 .env*
+.secrets
+**/.secrets
+app/dist-pages
