@@ -154,7 +154,7 @@ export const uk = {
     next: "Наступний напрямок",
   },
   compare: {
-    afterAlt: "Візуалізація цього приміщення після ремонту",
+    afterAlt: "Приміщення після ремонту з готовими оздобленими поверхнями",
     beforeAlt: "Приміщення з чорновими поверхнями до ремонту",
     before: "До",
     after: "Після",
@@ -413,7 +413,7 @@ export const en: UI = {
     next: "Next service",
   },
   compare: {
-    afterAlt: "Visualisation of this space after renovation",
+    afterAlt: "Space after renovation with finished surfaces",
     beforeAlt: "Space with rough surfaces before renovation",
     before: "Before",
     after: "After",

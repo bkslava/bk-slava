@@ -214,7 +214,7 @@ export const projectsEn = [
     type: "Drywall construction",
     category: "Preparation and installation",
     image: "drywall",
-    text: "A visualisation of drywall installation, showing a partition, a recess and framing that define the new layout.",
+    text: "Drywall installation: a partition, a recess and framing that define the new layout.",
   },
   {
     id: "armstrong-ofis",
