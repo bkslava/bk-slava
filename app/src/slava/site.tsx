@@ -1294,10 +1294,7 @@ export function Portfolio() {
                   sizes="(max-width: 1200px) 90vw, 1080px"
                 />
                 <div className="project-dialog-text">
-                  <span>
-                    {selected.type}
-                    {" / " + p.visualisation}
-                  </span>
+                  <span>{selected.type}</span>
                   <Dialog.Title>{selected.title}</Dialog.Title>
                   <Dialog.Description>{selected.text}</Dialog.Description>
                   <ConsultationButton

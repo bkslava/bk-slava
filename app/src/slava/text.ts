@@ -96,7 +96,7 @@ export const uk = {
     prev: "Попередня робота",
     next: "Наступна робота",
     group: "Карусель робіт",
-    foot: "Добірка напрямків наших робіт. Зображення — архітектурні візуалізації.",
+    foot: "Добірка напрямків наших робіт.",
     all: "Усі наші роботи",
   },
   directory: {
@@ -160,11 +160,11 @@ export const uk = {
     after: "Після",
     slider: "Порівняти вигляд до та після ремонту",
     valueText: (v: number) => `${v}% до ремонту, ${100 - v}% після ремонту`,
-    hint: "Рухайте розділювач, щоб порівняти. Візуалізація перетворення, створена для ілюстрації можливого результату.",
+    hint: "Рухайте розділювач, щоб порівняти.",
   },
   portfolioPage: {
     title: "Наші роботи",
-    text: "Добірка напрямків наших робіт для житлових і комерційних просторів. Архітектурні візуалізації показують характер матеріалів і можливий результат; вони не є фотографіями виконаних об’єктів компанії.",
+    text: "Добірка напрямків наших робіт для житлових і комерційних просторів.",
     filtersLabel: "Категорії робіт",
     all: "Усі",
     categories: [
@@ -177,7 +177,6 @@ export const uk = {
     changeTitle: "Побачити зміни.",
     changeText: "Від підготовленої основи до продуманого інтер’єру.",
     closeProject: "Закрити проєкт",
-    visualisation: "ВІЗУАЛІЗАЦІЯ",
     discuss: "Обговорити ваш проєкт",
   },
   about: {
@@ -250,7 +249,7 @@ export const uk = {
       "ТОВ БК Слава працює з 2006 року. Ремонт під ключ, демонтаж, гіпсокартон, стелі та оздоблення у Києві й області.",
     servicesText:
       "Ремонт під ключ, демонтаж, гіпсокартон, стелі, оздоблення, сантехніка та електрика. Київ та область.",
-    portfolioText: "Архітектурні рішення та візуалізації житлових і комерційних просторів.",
+    portfolioText: "Добірка напрямків наших робіт для житлових і комерційних просторів.",
     aboutText: "ТОВ БК Слава працює з 2006 року у Києві та Київській області.",
     contactsText: "Телефон +380 67 609 00 75. WhatsApp, Viber, email. Запис на консультацію.",
     privacyText: "Обробка контактних даних у формі консультації БК Слава.",
@@ -356,7 +355,7 @@ export const en: UI = {
     prev: "Previous project",
     next: "Next project",
     group: "Project carousel",
-    foot: "Examples of the work we cover, shown through architectural visualisations.",
+    foot: "Examples of the work we cover.",
     all: "All our work",
   },
   directory: {
@@ -420,11 +419,11 @@ export const en: UI = {
     after: "After",
     slider: "Compare the view before and after renovation",
     valueText: (v: number) => `${v}% before renovation, ${100 - v}% after renovation`,
-    hint: "Move the divider to compare the views. This visualisation illustrates a possible result.",
+    hint: "Move the divider to compare the views.",
   },
   portfolioPage: {
     title: "Our work",
-    text: "Explore our work across residential and commercial spaces. These architectural visualisations show materials and possible results; they are not photographs of projects completed by the company.",
+    text: "Explore our work across residential and commercial spaces.",
     filtersLabel: "Work categories",
     all: "All",
     categories: ["Residential spaces", "Commercial spaces", "Interior finishing", "Preparation and installation"],
@@ -432,7 +431,6 @@ export const en: UI = {
     changeTitle: "Before and after.",
     changeText: "From the prepared space to a finished interior.",
     closeProject: "Close project",
-    visualisation: "VISUALISATION",
     discuss: "Discuss your project",
   },
   about: {
@@ -505,7 +503,7 @@ export const en: UI = {
       "BK Slava LLC has worked in Kyiv and Kyiv Region since 2006. Turnkey renovation, demolition work, drywall construction, suspended ceilings and interior finishing.",
     servicesText:
       "Seven construction and renovation services in Kyiv and Kyiv Region: turnkey renovation, demolition work, drywall construction, suspended ceilings, interior finishing, plumbing and electrical work, and general construction work.",
-    portfolioText: "Architectural visualisations of residential and commercial spaces, showing materials and possible results.",
+    portfolioText: "Examples of our work across residential and commercial spaces.",
     aboutText: "BK Slava LLC has been working since 2006 in Kyiv and Kyiv Region.",
     contactsText: "Phone +380 67 609 00 75. WhatsApp, Viber, email. Book a consultation.",
     privacyText: "How contact details are handled in the BK Slava consultation form.",
