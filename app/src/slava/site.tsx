@@ -972,7 +972,6 @@ function Reviews() {
             <span className="accent-dot">.</span>
           </h2>
         </div>
-        <p className="reviews-note">{r.note}</p>
       </div>
       <div className="reviews-grid">{cards(reviews.slice(0, 3))}</div>
       <details className="reviews-more">

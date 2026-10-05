@@ -31,7 +31,7 @@ export const uk = {
     description: "Будівельні та ремонтні роботи з 2006 року.",
   },
   footer: {
-    tagline: ["Продумані рішення.", "Акуратне виконання.", "Київ та Київська область."],
+    tagline: ["Продумані рішення.", "Професійне виконання.", "Київ та Київська область."],
     since: "Працюємо з 2006 року",
   },
   form: {
@@ -107,7 +107,6 @@ export const uk = {
   reviews: {
     eyebrow: "ДОСВІД СПІВПРАЦІ",
     title: "Відгуки",
-    note: "Підготовлені тексти для погодження компанією; відгуки ще не підтверджені.",
     all: "Усі відгуки",
   },
   process: {
@@ -289,7 +288,7 @@ export const en: UI = {
     description: "Construction and renovation in Kyiv and Kyiv Region since 2006.",
   },
   footer: {
-    tagline: ["Thoughtful solutions.", "Careful execution.", "Kyiv and Kyiv Region."],
+    tagline: ["Thoughtful solutions.", "Professional workmanship.", "Kyiv and Kyiv Region."],
     since: "Since 2006",
   },
   form: {
@@ -367,7 +366,6 @@ export const en: UI = {
   reviews: {
     eyebrow: "WORKING TOGETHER",
     title: "Reviews",
-    note: "Draft review text awaiting company approval. These accounts have not been verified.",
     all: "All reviews",
   },
   process: {
